@@ -14,5 +14,9 @@
   
   .name, .lastName, .job, .email {
     text-align: left;
-    width: 100px;
+    width: 120px;
+    margin:5px;
+  }
+  .btn{
+      margin: 10px;
   }
