@@ -13,28 +13,17 @@ function showData(employees) {
 
 function createMyLi(employees) {
     const listItem = document.createElement('li');
-    const btnEdit = createBtns('edit btn btn-success', 'Modifier');
-    const btnDelete = createBtns('delete btn btn-danger', 'Supprimer');
+    const btnEdit = createBtns('edit btn btn-primary', 'View more');
     const name = createColumn('span', 'name', employees.name);
     const lastName = createColumn('span', 'lastName', employees.last_name);
-    const jobTitle = createColumn('span', 'job',employees.job_title);
-    const email = createColumn('span', 'email',employees.email);
     listItem.setAttribute('id', employees.id);
   
     listItem.appendChild(name);
     listItem.appendChild(lastName);
-    listItem.appendChild(jobTitle);
-    listItem.appendChild(email);
     listItem.appendChild(btnEdit);
-    listItem.appendChild(btnDelete);
   
     btnEdit.addEventListener('click', editEmployee);
   
-    btnDelete.addEventListener('click', function (event) {
-      if (confirm(`Souhaitez vous retirer l'employé ? "${employees.name}"`)) {
-        list.removeChild(listItem);
-      }
-    });
     return listItem;
 }
 
@@ -73,4 +62,5 @@ function createBtns(className, text) {
   // création de la function 'editEmployee'
   function editEmployee(event) {
 
+    
     };
