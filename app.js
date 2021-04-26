@@ -2,25 +2,25 @@ const list = document.getElementById('list');
 
 // function show API
 function showData(employees) {
-  employees.forEach((employees, index) => {
-    const listItem = createMyLi(employees, index);
+  employees.forEach((employe, index) => {
+    const listItem = createMyLi(employe, index);
     list.appendChild(listItem);
   });
 }
 
 // function creation list
-function createMyLi(employees) {
+function createMyLi(employe) {
     const listItem = document.createElement('li');
     const btnView = createBtns('view btn btn-primary', 'View more');
-    const name = createColumn('span', 'name', employees.name);
-    const lastName = createColumn('span', 'lastName', employees.last_name);
-    listItem.setAttribute('id', employees.id);
+    const name = createColumn('span', 'name', employe.name);
+    const lastName = createColumn('span', 'lastName', employe.last_name);
+    listItem.setAttribute('id', employe.id);
   
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnView);
   
-    btnView.addEventListener('click', viewEmployee);
+    btnView.addEventListener('click', viewMore);
   
     return listItem;
 }
@@ -45,7 +45,6 @@ function createBtns(className, text) {
   function loadData() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-      console.log('readyState', this.readyState);
       if (this.readyState === 4 && this.status === 200) {
         const employee = JSON.parse(this.responseText);
         showData(employee);
@@ -59,17 +58,15 @@ function createBtns(className, text) {
 
   // Add employees ----------------------------------------
   function addEmployee() {
-    const form = document.getElementById('form');
 
-    form.addEventListener('submit', addData);
   }
 
   function addData() {
     
   }
 
-  // creation function 'viewEmployee'
-  function viewEmployee(event) {
+  // creation function 'viewMore'
+  function viewMore(event) {
  
     // creation modal ------------------------------------------
     const modal = document.getElementById('myModal');
@@ -79,40 +76,16 @@ function createBtns(className, text) {
     const form = document.getElementById('form');
     form.style.display = "none";
 
-    // function show API
-    function showDataModal(employees) {
-      employees.forEach((employees, index) => {
-        const modalListItem = modalLi(employees, index);
-        listModal.appendChild(modalListItem);
-      });
-    }
-    
-    // request datas  GET -----------------------------
-    function loadDataModal() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        console.log('readyState', this.readyState);
-        if (this.readyState === 4 && this.status === 200) {
-          const employees = JSON.parse(this.responseText);
-          showDataModal(employees)
-        }
-      };
-      xhttp.open('GET', 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees', true);
-      xhttp.send();
-    }
-    loadDataModal();
-    // End request ------------------------------------------------
-
     // function creation modalLi
-    function modalLi(employees) {
+    function viewEmploye(employe) {
         const listModal = document.createElement('li');
         const btnEdit = createBtns('edit btn btn-success', 'Edit');
         const btnDelete = createBtns('delete btn btn-danger', 'Delete');
-        const name = createColumn('span', 'name', employees.name);
-        const lastName = createColumn('span', 'lastName', employees.last_name);
-        const job = createColumn('span', 'job', employees.job_title);
-        const email = createColumn('span', 'email', employees.email);
-        listModal.setAttribute('id', employees.id);
+        const name = createColumn('span', 'name', employe.name);
+        const lastName = createColumn('span', 'lastName', employe.last_name);
+        const job = createColumn('span', 'job', employe.job_title);
+        const email = createColumn('span', 'email', employe.email);
+        listModal.setAttribute('id', employee.id);
       
         listModal.appendChild(name);
         listModal.appendChild(lastName);

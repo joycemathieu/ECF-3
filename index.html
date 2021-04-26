@@ -9,28 +9,28 @@
 </head>
 
 <body>
+   <!-- START Form -->
+   <form id="form">
+    <div class="row form-row">
+      <div class="col">
+        <input id="formName" type="text" class="form-control" placeholder="First name">
+      </div>
+      <div class="col">
+        <input id="formLastname" type="text" class="form-control" placeholder="Last name">
+      </div>
+    </div>
+    <div class="row form-row">
+      <div class="col">
+        <input id="formJob" type="text" class="form-control" placeholder="Job Title">
+      </div>
+      <div class="col form-group">
+        <input id="formEmail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <button id="formAddBtn" type="submit" class="btn btn-primary">Add your employee</button>
+    </div>
+  </form>
+  <!-- END Form -->
   <ul id="list" class="list"></ul>
-      <!-- START Form -->
-      <form id="form">
-        <div class="row form-row">
-          <div class="col">
-            <input id="formName" type="text" class="form-control" placeholder="First name">
-          </div>
-          <div class="col">
-            <input id="formLastname" type="text" class="form-control" placeholder="Last name">
-          </div>
-        </div>
-        <div class="row form-row">
-          <div class="col">
-            <input id="formJob" type="text" class="form-control" placeholder="Job Title">
-          </div>
-          <div class="col form-group">
-            <input id="formEmail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-          <button id="formAddBtn" type="submit" class="btn btn-primary">Add your employee</button>
-        </div>
-      </form>
-      <!-- END Form -->
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
@@ -38,9 +38,9 @@
   <!-- Modal content -->
   <div id="modal-contant" class="modal-content">
     <span class="close">&times;</span>
-    <ul id="modalList" class="list">Employees Informations:</ul>
+    <ul id="modalList" class="list">Employe Informations:</ul>
     <!-- START Form modal-->
-    <form id="formModal" onclick="sendData({test:'ok'})" action="https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees" method="post">
+    <form id="formModal" action="https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/:id" method="post">
       <div class="row form-row">
         <div class="col">
           <input id="formNameModal" type="text" class="form-control" placeholder="First name">
