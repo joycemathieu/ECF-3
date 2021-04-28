@@ -23,7 +23,7 @@ function createMyLi(employe) {
     btnViewMore.addEventListener('click', function(event) {
       viewMore(employe);
       const modalContent = document.getElementsByClassName('modal-content')[0];
-      console.log(modalContent);
+      modalContent.innerHTML = "";
       const editBtn = btnModal('btn btn-primary', 'Edit', '#modal2', 'modal', 'modal');
       const deleteBtn = btnModal('btn btn-danger', 'Delete', '#modal2', 'modal', 'modal');
       const name = createColumn('span', 'name', employe.name);
