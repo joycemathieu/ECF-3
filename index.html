@@ -32,39 +32,56 @@
   <!-- END Form -->
   <ul id="list" class="list"></ul>
 
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  
-  <div id="modal-contant" class="modal-content">
-    <span class="close">&times;</span>
-    <ul id="modalList" class="list">Employe Informations:</ul>
-    <!-- START Form modal-->
-    <form id="formModal" action="https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/:id" method="post">
-      <div class="row form-row">
-        <div class="col">
-          <input id="formNameModal" type="text" class="form-control" placeholder="First name">
-        </div>
-        <div class="col">
-          <input id="formLastnameModal" type="text" class="form-control" placeholder="Last name">
-        </div>
+<!-- First modal dialog -->
+<div class="modal fade" id="modal" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- 1 employe -->
+      <div id="modal-footer" class="modal-footer">
+        <!-- Toogle to second dialog -->
       </div>
-      <div class="row form-row">
-        <div class="col">
-          <input id="formJobModal" type="text" class="form-control" placeholder="Job Title">
-        </div>
-        <div class="col form-group">
-          <input id="formEmailModal" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-      </div>
-      <button id="formEditBtn" type="submit" class="btn btn-primary">Edit</button>
-    </form>
-    <!-- END Form modal-->
+    </div>
   </div>
-
 </div>
+<!-- Second modal dialog -->
+<div class="modal fade" id="modal2" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- START Form modal-->
+      <form id="formModal" action="https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/:id" method="post">
+        <div class="row form-row">
+          <div class="col">
+            <input id="formNameModal" type="text" class="form-control" placeholder="First name">
+          </div>
+          <div class="col">
+            <input id="formLastnameModal" type="text" class="form-control" placeholder="Last name">
+          </div>
+        </div>
+        <div class="row form-row">
+          <div class="col">
+            <input id="formJobModal" type="text" class="form-control" placeholder="Job Title">
+          </div>
+          <div class="col form-group">
+            <input id="formEmailModal" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          </div>
+        </div>
+      </form>
+      <!-- END Form modal-->
+      <div class="modal-footer">
+        <!-- Toogle to first dialog, `data-bs-dismiss` attribute can be omitted - clicking on link will close dialog anyway -->
+        <a class="btn btn-primary" href="#modal" data-bs-toggle="modal" role="button">Go Back</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
 
   <script src="app.js"></script>
+  <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
