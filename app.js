@@ -24,8 +24,8 @@ function createMyLi(employe) {
       viewMore(employe);
       const modalContent = document.getElementsByClassName('modal-content')[0];
       modalContent.innerHTML = "";
-      const editBtn = btnModal('btn btn-primary', 'Edit', '#modal2', 'modal', 'modal');
-      const deleteBtn = btnModal('btn btn-danger', 'Delete', '#modal2', 'modal', 'modal');
+      const editBtn = btnModal('btn btn-primary', 'Edit', '#modal2', 'modal', 'modal'); 
+      const deleteBtn = createBtns('btn btn-danger', 'Delete');
       const name = createColumn('span', 'name', employe.name);
       const lastName = createColumn('span', 'lastName', employe.last_name);
       const job = createColumn('span', 'job', employe.job_title);
@@ -42,7 +42,6 @@ function createMyLi(employe) {
     return listItem;
 }
 
-  //<button class="btn btn-primary" data-bs-target="#modal2" data-bs-toggle="modal" data-bs-dismiss="modal">Open #modal2</button>
 function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
   const btnModalElement = document.createElement('button');
   btnModalElement.innerHTML = text;
@@ -54,13 +53,24 @@ function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
   return btnModalElement;
 }
 
-function viewMore(employe){
-  console.log(employe);
-  
+function viewMore(employeId){
+  console.log(employeId);
+  function loadDataEmploye() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const employeId = JSON.parse(this.responseText);
+        console.log(employeId);
+      }
+    };
+    xhttp.open('GET', 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/:id', true);
+    xhttp.send();
+  }
+  loadDataEmploye();
 
 
 }
-//<a class="btn btn-primary" data-bs-toggle="modal" href="#modal" role="button">Open #modal</a>
+
 function linkBtns(className, text, dataToggle, link, role) {
   const linkBtnElement = document.createElement('a');
   linkBtnElement.innerHTML = text;
