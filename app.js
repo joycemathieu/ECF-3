@@ -14,18 +14,36 @@ function createMyLi(employe) {
     const btnViewMore = linkBtns('btn btn-primary', 'View more', 'modal', '#modal', 'button');
     const name = createColumn('span', 'name', employe.name);
     const lastName = createColumn('span', 'lastName', employe.last_name);
-    listItem.setAttribute('id', employe.id);
+    const formList = document.getElementById('form');
+    const job = createColumn('span', 'job', employe.job_title);
+    const email = createColumn('span', 'email', employe.email);
 
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnViewMore);
   
+    formList.addEventListener('submit', function addEmploye(event) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          xhttp.send;
+        }
+        else {
+          alert('Sorry, this post is impossible')
+        }
+      };
+      xhttp.open("POST", "https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("name="+name+'last_name='+lastName+'job_title'+job+'email'+email);
+      });
+
+
     btnViewMore.addEventListener('click', function(event) {
       viewMore(employe);
       const modalContent = document.getElementsByClassName('modal-content')[0];
       modalContent.innerHTML = "";
-      const editBtn = btnModal('btn btn-primary', 'Edit', '#modal2', 'modal', 'modal'); 
-      const deleteBtn = createBtns('btn btn-danger', 'Delete');
+      const editBtn = btnModal('edit btn btn-primary', 'Edit', '#modal2', 'modal', 'modal'); 
+      const deleteBtn = createBtns('delete btn btn-danger', 'Delete');
       const name = createColumn('span', 'name', employe.name);
       const lastName = createColumn('span', 'lastName', employe.last_name);
       const job = createColumn('span', 'job', employe.job_title);
@@ -53,21 +71,23 @@ function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
   return btnModalElement;
 }
 
-function viewMore(employeId){
-  console.log(employeId);
-  function loadDataEmploye() {
+function viewMore(employe){
+  /*let id = employe.id;
+  function editDataEmploye() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        const employeId = JSON.parse(this.responseText);
-        console.log(employeId);
+        const employees = JSON.parse(this.responseText);
+        return employees;
       }
     };
-    xhttp.open('GET', 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/:id', true);
+    xhttp.open('GET', 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/'+id, true);
     xhttp.send();
   }
-  loadDataEmploye();
-
+  editDataEmploye();*/
+  
+  //const editData = document.getElementsByClassName('editData')[0];
+  //editData.addEventListener('submit', editEmploye)
 
 }
 
