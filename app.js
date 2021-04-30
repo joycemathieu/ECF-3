@@ -15,8 +15,10 @@ function createMyLi(employe) {
     const name = createColumn('span', 'name', employe.name);
     const lastName = createColumn('span', 'lastName', employe.last_name);
     const formList = document.getElementById('form');
-    const job = createColumn('span', 'job', employe.job_title);
-    const email = createColumn('span', 'email', employe.email);
+    const nameValue = document.getElementById('formName').value;
+    const lastNameValue = document.getElementById('formLastname').value;
+    const jobValue = document.getElementById('formJob').value;
+    const emailValue = document.getElementById('formEmail').value;
 
     listItem.appendChild(name);
     listItem.appendChild(lastName);
@@ -26,7 +28,7 @@ function createMyLi(employe) {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          xhttp.send;
+          
         }
         else {
           alert('Sorry, this post is impossible')
@@ -34,7 +36,7 @@ function createMyLi(employe) {
       };
       xhttp.open("POST", "https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("name="+name+'last_name='+lastName+'job_title'+job+'email'+email);
+      xhttp.send("name="+nameValue+'last_name='+lastNameValue+'job_title'+jobValue+'email'+emailValue);
       });
 
 
