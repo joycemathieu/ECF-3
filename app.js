@@ -1,6 +1,10 @@
-// voilà c'est mieux
-
 const list = document.getElementById('list');
+const formList = document.getElementById('form');
+const addBtn = document.getElementById('formAddBtn');
+const nameFormAdd = document.getElementById('formName');
+const lastNameFormAdd = document.getElementById('formLastname');
+const jobFormAdd = document.getElementById('formJob');
+const emailFormAdd = document.getElementById('formEmail');
 
 // function show API
 function showData(employees) {
@@ -10,37 +14,42 @@ function showData(employees) {
   });
 }
 
+// function add employe
+function addEmploye(e) {
+
+  addBtn.addEventListener('click', function add(e){
+    e.preventDefault();
+    nameFormAddValue = nameFormAdd.value;
+    lastNameFormAddValue = lastNameFormAdd.value;
+    jobFormAddValue = jobFormAdd.value;
+    emailFormAddValue = emailFormAdd.value;
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 201) {
+      
+    }
+  };
+  xhttp.open("POST", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees', true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("name="+nameFormAddValue+'&last_name='+lastNameFormAddValue+'&job_title'+jobFormAddValue+'&email'+emailFormAddValue);
+  });
+  return formList
+};
+addEmploye();
+
 // function creation list
 function createMyLi(employe) {
     const listItem = document.createElement('li');
     const btnViewMore = linkBtns('btn btn-primary', 'View more', 'modal', '#modal', 'button');
     const name = createColumn('span', 'name', employe.name);
     const lastName = createColumn('span', 'lastName', employe.last_name);
-    const formList = document.getElementById('form');
-    const nameValue = document.getElementById('formName').value;
-    const lastNameValue = document.getElementById('formLastname').value;
-    const jobValue = document.getElementById('formJob').value;
-    const emailValue = document.getElementById('formEmail').value;
+
 
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnViewMore);
   
-    formList.addEventListener('submit', function addEmploye(event) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          
-        }
-        else {
-          alert('Sorry, this post is impossible')
-        }
-      };
-      xhttp.open("POST", "https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees", true);
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("name="+nameValue+'last_name='+lastNameValue+'job_title'+jobValue+'email'+emailValue);
-      });
-
 
     btnViewMore.addEventListener('click', function(event) {
       viewMore(employe);
