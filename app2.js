@@ -58,4 +58,21 @@
 
     }
 
+    formList.addEventListener('submit', function addEmploye(event) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          
+        }
+        else {
+          alert('Sorry, this post is impossible')
+        }
+      };
+      xhttp.open("POST", "https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("name="+nameValue+'last_name='+lastNameValue+'job_title'+jobValue+'email'+emailValue);
+      });
+
+
+
   };
