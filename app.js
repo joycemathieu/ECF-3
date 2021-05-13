@@ -33,15 +33,42 @@ const createMyLi = (employe) => {
     const btnViewMore = linkBtns('btn btn-primary', 'View more', 'modal', '#modal', 'button');
     const name = createColumn('span', 'name', employe.name);
     const lastName = createColumn('span', 'lastName', employe.last_name);
+<<<<<<< HEAD
+=======
+    const formList = document.getElementById('form');
+    const job = createColumn('span', 'job', employe.job_title);
+    const email = createColumn('span', 'email', employe.email);
+>>>>>>> parent of f70ec88 (Update app.js)
 
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnViewMore);
   
+<<<<<<< HEAD
     btnViewMore.addEventListener('click', viewMore(employe));
     // voir + d'un employé
     const viewMore = (employe) => {
       createMyLi(employe);
+=======
+    formList.addEventListener('submit', function addEmploye(event) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          xhttp.send;
+        }
+        else {
+          alert('Sorry, this post is impossible')
+        }
+      };
+      xhttp.open("POST", "https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("name="+name+'last_name='+lastName+'job_title'+job+'email'+email);
+      });
+
+
+    btnViewMore.addEventListener('click', function(event) {
+      viewMore(employe);
+>>>>>>> parent of f70ec88 (Update app.js)
       const modalContent = document.getElementsByClassName('modal-content')[0];
       modalContent.innerHTML = "";
       const editBtn = btnModal('edit btn btn-primary', 'Edit', '#modal2', 'modal', 'modal'); 
