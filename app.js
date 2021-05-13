@@ -23,16 +23,26 @@ function addEmploye(e) {
     lastNameFormAddValue = lastNameFormAdd.value;
     jobFormAddValue = jobFormAdd.value;
     emailFormAddValue = emailFormAdd.value;
+    data = {
+      id : "",
+      name : nameFormAddValue,
+      last_name : lastNameFormAddValue,
+      job_title : jobFormAddValue,
+      email : emailFormAddValue
+    }
+    console.log(data)
   
-  var xhttp = new XMLHttpRequest();
+  // request POST
+    var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
-      
+     data = JSON.stringify(data);
     }
+  else { alert ("sorry !")}
   };
   xhttp.open("POST", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees', true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("name="+nameFormAddValue+'&last_name='+lastNameFormAddValue+'&job_title'+jobFormAddValue+'&email'+emailFormAddValue);
+  xhttp.send(data)
   });
   return formList
 };
