@@ -23,20 +23,15 @@ function addEmploye(e) {
     lastNameFormAddValue = lastNameFormAdd.value;
     jobFormAddValue = jobFormAdd.value;
     emailFormAddValue = emailFormAdd.value;
-    data = {
-      id : "",
-      name : nameFormAddValue,
-      last_name : lastNameFormAddValue,
-      job_title : jobFormAddValue,
-      email : emailFormAddValue
-    }
+    data = 'name='+nameFormAddValue+'&last_name='+lastNameFormAddValue+'&job_title='+jobFormAddValue+'&email='+emailFormAddValue;
     console.log(data)
-  
+
+
   // request POST
-    var xhttp = new XMLHttpRequest();
+  var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
-     data = JSON.stringify(data);
+    alert(http.responseText);
     }
   else { alert ("sorry !")}
   };
