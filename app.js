@@ -86,24 +86,28 @@ function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
   return btnModalElement;
 }
 
+// show 1 employe
 function viewMore(employe){
 
   let id = employe.id;
   const btnEdit = document.getElementsByClassName('editData')[0];
   
+  
+  // edit your employe 
   btnEdit.addEventListener('click', function edit(e){
     e.preventDefault();
-
+    let data = 'name='+editName.value+'&last_name='+editLastName.value+'&job_title='+editJob.value+'&email='+editEmail.value;
+    console.log(data)
   // request PUT
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 201) {
+  if (this.readyState == 4 && this.status == 200) {
     alert("your edit is ok !");
     }
   };
-  xhttp.open("PUT", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees'+id, true);
+  xhttp.open("PUT", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/'+id, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send('name='+editName.value+'&last_name='+editLastName.value+'&job_title='+editJob.value+'&email='+editEmail.value)
+  xhttp.send(data)
   });
   return formModal
 }
@@ -135,8 +139,8 @@ function createBtns(className, text) {
     return node;
   }
 
-  // request datas  GET -----------------------------
-  function loadData() {
+  // SHOW LIST -- request datas  GET -----------------------------
+function loadData() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
