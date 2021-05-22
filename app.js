@@ -40,25 +40,44 @@ function addEmploye(e) {
 };
 addEmploye();
 
-// function creation list
+// function creation list and show all employees
 function createMyLi(employe) {
     const listItem = document.createElement('li');
     const btnViewMore = linkBtns('btn btn-primary', 'View more', 'modal', '#modal', 'button');
+    const deleteBtn = createBtns('delete btn btn-danger', 'Delete', 'submit', 'deleteBtn');
     const name = createColumn('span', 'name', employe.name);
     const lastName = createColumn('span', 'lastName', employe.last_name);
-
+    let id = employe.id;
 
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnViewMore);
-  
+    listItem.appendChild(deleteBtn);
+
+        //delete your employe 
+    deleteBtn.addEventListener('click',function remove(event){
+    event.preventDefault();
+    const confirmation = confirm("Are you sure ?");
+
+    if (confirmation === true) {
+            // request DELETE
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        alert("your delete is ok !");
+        }
+      };
+      xhttp.open("DELETE", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/'+id, true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send(null)
+    };
+  });
 
     btnViewMore.addEventListener('click', function() {
       viewMore(employe);
       const modalContent = document.getElementsByClassName('modal-content')[0];
       modalContent.innerHTML = "";
       const editBtn = btnModal('edit btn btn-primary', 'Edit', '#modal2', 'modal', 'modal'); 
-      const deleteBtn = createBtns('delete btn btn-danger', 'Delete');
       const name = createColumn('span', 'name', employe.name);
       const lastName = createColumn('span', 'lastName', employe.last_name);
       const job = createColumn('span', 'job', employe.job_title);
@@ -88,16 +107,13 @@ function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
 
 // show 1 employe
 function viewMore(employe){
-
   let id = employe.id;
   const btnEdit = document.getElementsByClassName('editData')[0];
-  
-  
+
   // edit your employe 
   btnEdit.addEventListener('click', function edit(e){
     e.preventDefault();
     let data = 'name='+editName.value+'&last_name='+editLastName.value+'&job_title='+editJob.value+'&email='+editEmail.value;
-    console.log(data)
   // request PUT
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -109,8 +125,9 @@ function viewMore(employe){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data)
   });
+
   return formModal
-}
+};
 
 function linkBtns(className, text, dataToggle, link, role) {
   const linkBtnElement = document.createElement('a');
@@ -123,10 +140,12 @@ function linkBtns(className, text, dataToggle, link, role) {
   return linkBtnElement;
 }
 
-function createBtns(className, text) {
+function createBtns(className, text, type, id) {
     const btnElement = document.createElement('button');
     btnElement.innerHTML = text;
     btnElement.setAttribute('class', className);
+    btnElement.setAttribute('type', type);
+    btnElement.setAttribute('id', id);
     return btnElement;
   }
   
