@@ -5,6 +5,11 @@ const nameFormAdd = document.getElementById('formName');
 const lastNameFormAdd = document.getElementById('formLastname');
 const jobFormAdd = document.getElementById('formJob');
 const emailFormAdd = document.getElementById('formEmail');
+const formModal = document.getElementById('formModal');
+const editName = document.getElementById('formNameModal');
+const editLastName = document.getElementById('formLastNameModal');
+const editJob = document.getElementById('formJobModal');
+const editEmail = document.getElementById('formEmailModal');
 
 // function show API
 function showData(employees) {
@@ -19,25 +24,17 @@ function addEmploye(e) {
 
   addBtn.addEventListener('click', function add(e){
     e.preventDefault();
-    nameFormAddValue = nameFormAdd.value;
-    lastNameFormAddValue = lastNameFormAdd.value;
-    jobFormAddValue = jobFormAdd.value;
-    emailFormAddValue = emailFormAdd.value;
-    data = 'name='+nameFormAddValue+'&last_name='+lastNameFormAddValue+'&job_title='+jobFormAddValue+'&email='+emailFormAddValue;
-    console.log(data)
-
 
   // request POST
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
-    alert(http.responseText);
+    alert("your send is ok !");
     }
-  else { alert ("sorry !")}
   };
   xhttp.open("POST", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees', true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(data)
+  xhttp.send('name='+nameFormAdd.value+'&last_name='+lastNameFormAdd.value+'&job_title='+jobFormAdd.value+'&email='+emailFormAdd.value)
   });
   return formList
 };
@@ -56,7 +53,7 @@ function createMyLi(employe) {
     listItem.appendChild(btnViewMore);
   
 
-    btnViewMore.addEventListener('click', function(event) {
+    btnViewMore.addEventListener('click', function() {
       viewMore(employe);
       const modalContent = document.getElementsByClassName('modal-content')[0];
       modalContent.innerHTML = "";
@@ -90,23 +87,25 @@ function btnModal(className, text, dataTarget, dataToggle, dataDismiss) {
 }
 
 function viewMore(employe){
-  /*let id = employe.id;
-  function editDataEmploye() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        const employees = JSON.parse(this.responseText);
-        return employees;
-      }
-    };
-    xhttp.open('GET', 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees/'+id, true);
-    xhttp.send();
-  }
-  editDataEmploye();*/
-  
-  //const editData = document.getElementsByClassName('editData')[0];
-  //editData.addEventListener('submit', editEmploye)
 
+  let id = employe.id;
+  const btnEdit = document.getElementsByClassName('editData')[0];
+  
+  btnEdit.addEventListener('click', function edit(e){
+    e.preventDefault();
+
+  // request PUT
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 201) {
+    alert("your edit is ok !");
+    }
+  };
+  xhttp.open("PUT", 'https://6057e432c3f49200173ad08d.mockapi.io/api/v1/employees'+id, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send('name='+editName.value+'&last_name='+editLastName.value+'&job_title='+editJob.value+'&email='+editEmail.value)
+  });
+  return formModal
 }
 
 function linkBtns(className, text, dataToggle, link, role) {
