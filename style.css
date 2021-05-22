@@ -2,7 +2,7 @@
     padding: 10px;
   }
   
-  .list li {
+.list li {
     display: flex;
     flex-direction: row;
     border: 1px solid lightgray;
@@ -11,12 +11,12 @@
     margin:5px auto;
   }
   
-  span {
+span {
     text-align: left;
     width: 100px;
     margin:5px;
   }
-  .btn{
+.btn{
       margin: 10px;
       max-width: -webkit-fill-available;
   }

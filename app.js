@@ -52,9 +52,8 @@ function createMyLi(employe) {
     listItem.appendChild(name);
     listItem.appendChild(lastName);
     listItem.appendChild(btnViewMore);
-    listItem.appendChild(deleteBtn);
 
-        //delete your employe 
+    //delete your employe 
     deleteBtn.addEventListener('click',function remove(event){
     event.preventDefault();
     const confirmation = confirm("Are you sure ?");
